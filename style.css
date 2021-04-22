@@ -1,0 +1,79 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    
+    background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+    background-repeat:no-repeat;
+    background-size:100% 100% ;
+    background-attachment:fixed;
+}
+.menu
+{
+    width: 350px;
+    height: 100vh;
+    margin-left: 25px;
+    background-color:black;
+
+}
+.menu ol{
+    list-style: none;
+    display: block;
+
+}
+.menu ol li a{
+    color:white;
+    font-size: 20px;
+    padding :15px 20px;
+text-decoration: none;
+display: block;
+position: relative;
+
+}
+.menu ol li a .fa{
+    padding-right: 15px ;
+}
+/* .menu ol li a::before{
+    content: '';
+    position: absolute;
+    width: 6px;
+    height:100%;
+    background-color: yellowgreen;
+    left: 0;
+    top: 0;
+
+} */
+.menu ol li a:hover{
+    
+    background-color:#FFD700
+    ;
+}
+    /* .logout_btn{
+        margin-left: 1200px;
+        margin-top: 20px; 
+
+    
+
+    } */
+
+.logout_btn{
+    
+
+    text-decoration: none;
+    float: right;
+    margin-right: 40px;
+    border-radius: 2px;
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+
+}
+.logout_btn:hover{
+    background-color: red;
+}
+h3{
+    margin-left: 120px;
+    line-height: 40px;
+    font-size: 30px;
+}

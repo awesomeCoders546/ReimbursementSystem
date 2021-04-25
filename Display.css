@@ -1,0 +1,22 @@
+.displaycard{
+    position: relative;
+    background-color: #ffc107;
+    display: flex;
+    width: 70%;
+    padding: 50px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 15%;
+    transition: 0.3s;
+    animation: ease-in-out;
+}
+
+.displaycard:hover{
+    transform:scale(1.1);
+    box-shadow: 0px 0px 15px 0px;
+}
+
+.displaycard #button{
+margin-left: 65px;
+}

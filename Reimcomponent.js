@@ -8,7 +8,8 @@ class Reimcomponent extends React.Component{
 constructor(props){
     super(props)
     this.state={
-        accountReimburse:[]
+        accountReimburse:[],
+        viewAttend:{}
 
     }
 }
@@ -22,7 +23,23 @@ console.log(this.state.accountReimburse);
 viewReim = (e) => {
 e.preventDefault();
 document.getElementById('ReimTable').style.display="block";
+document.getElementById("attend").style.display = "none";
+
 }
+viewAttend = (event) => {
+  event.preventDefault();
+  document.getElementById("attend").style.display = "block";
+  // document.getElementById("add").style.display = "none";
+  document.getElementById("ReimTable").style.display = "none";
+  axios.get("http://localhost:8081/getAttendence"+"/"+1)
+    .then(res => {        
+      this.setState({ viewAttend: res.data });
+      console.log(this.state.viewAttend);
+    })
+  .catch(err => console.log(err))
+}
+
+
 
     approve = (e,r) =>{
         axios.put("http://localhost:8082/reimbursementapi/all/accountantStatus",{
@@ -59,7 +76,6 @@ render()
                   </li>
               </ul>
               <button type="button" style={but} class="btn btn-outline-danger">Logout</button>
-
             </nav>
 
 {/* *************************SideBar */}
@@ -93,7 +109,7 @@ render()
                         <li className="nav-item">
                           <a className="nav-link">
                             <i className="fa fa-eye" />
-                            <p>View Attendance</p>
+                            <p onClick={this.viewAttend }>View Attendance</p>
                           </a>
                         </li>
                       </ul>
@@ -108,9 +124,36 @@ render()
 
 
 
+{/* ***********View Attendance */}
 
-
-
+<div>
+            {
+              <table class="table table-striped" id="attend" style={{ display: "none" },{left:'20%'}}>
+              <thead>
+                <tr>
+                  <th scope="col">Attendence Id</th>
+                  <th scope="col">Employee Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">LogHours</th>
+                  <th scope="col">Login Time</th>
+                  <th scope="col">Logout Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{this.state.viewAttend.attendenceId}</td>
+                  <td>{this.state.viewAttend.employeeId}</td>
+                  <td>{this.state.viewAttend.employeeName}</td>
+                  <td>{this.state.viewAttend.status}</td>
+                  <td>{this.state.viewAttend.logHours}</td>
+                  <td>{this.state.viewAttend.loginTime}</td>
+                  <td>{this.state.viewAttend.logoutTime}</td>
+                </tr>
+              </tbody>
+            </table>
+            }
+          </div>
 
 
 

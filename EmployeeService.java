@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sjp.Exception.ResourceNotFound;
+import com.sjp.Model.AttendanceModel;
 import com.sjp.Model.EmployeeModel;
+import com.sjp.Repository.AttendanceRepository;
 import com.sjp.Repository.EmployeeRepository;
 
 @Service
@@ -15,6 +17,8 @@ public class EmployeeService
 {
 	@Autowired
 	private EmployeeRepository empRepo;
+	@Autowired
+	private AttendanceRepository attendRepo;
 	
 	public EmployeeModel updateEmployee(EmployeeModel employee)
 	{
@@ -34,9 +38,14 @@ public class EmployeeService
 	}
 	public EmployeeModel employeeLogin(EmployeeModel employee)
 	{
+		AttendanceModel attendModel=new AttendanceModel();
 		EmployeeModel model=empRepo.findByEmailAndPassword(employee.getEmail(),employee.getPassword());
 		if(model!=null)
 		{
+			attendModel.setStatus("Present");
+			attendModel.setEmployeeId(model.getEmployeeId());
+			attendModel.setEmployeeName(model.getName());
+			attendRepo.save(attendModel);
 			return model;
 		}
 		else
